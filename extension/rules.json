@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "requestHeaders": [
+                {
+                    "header": "user-agent",
+                    "operation": "set",
+                    "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) discord/1.0.9143 Chrome/120.0.6099.291 Electron/28.2.4 Safari/537.36"
+                },
+                {
+                    "header": "sec-ch-ua",
+                    "operation": "remove"
+                },
+                {
+                    "header": "sec-ch-ua-mobile",
+                    "operation": "remove"
+                },
+                {
+                    "header": "sec-ch-ua-platform",
+                    "operation": "remove"
+                }
+            ]
+        },
+        "condition": {
+            "urlFilter": "discord.com/api/*",
+            "excludedUrlFilters": [
+                "*claim-reward*"
+            ],
+            "resourceTypes": [
+                "xmlhttprequest",
+                "websocket"
+            ]
+        }
+    }
+]

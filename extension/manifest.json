@@ -1,0 +1,85 @@
+{
+    "manifest_version": 3,
+    "name": "Orbify",
+    "version": "1.0",
+    "description": "Minimalist quest spoofer extension.",
+    "permissions": [
+        "storage",
+        "declarativeNetRequest",
+        "declarativeNetRequestWithHostAccess",
+        "notifications"
+    ],
+    "host_permissions": [
+        "*://*.discord.com/*",
+        "*://discord.com/*"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "declarative_net_request": {
+        "rule_resources": [
+            {
+                "id": "ruleset_1",
+                "enabled": true,
+                "path": "rules.json"
+            }
+        ]
+    },
+    "action": {
+        "default_popup": "popup.html",
+        "default_title": "Orbify",
+        "default_icon": "icons/icon.png"
+    },
+    "icons": {
+        "16": "icons/icon16.png",
+        "32": "icons/icon32.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*.discord.com/*",
+                "*://discord.com/*"
+            ],
+            "js": [
+                "preload.js"
+            ],
+            "run_at": "document_start",
+            "world": "MAIN"
+        },
+        {
+            "matches": [
+                "*://*.discord.com/*",
+                "*://discord.com/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "run_at": "document_start"
+        },
+        {
+            "matches": [
+                "*://*.discord.com/*",
+                "*://discord.com/*"
+            ],
+            "js": [
+                "inject.js"
+            ],
+            "run_at": "document_idle",
+            "world": "MAIN"
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "inject.js",
+                "preload.js"
+            ],
+            "matches": [
+                "*://*.discord.com/*",
+                "*://discord.com/*"
+            ]
+        }
+    ]
+}

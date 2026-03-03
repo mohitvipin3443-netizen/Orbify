@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+    <div class="topbar">
+        <div class="topbar-left">
+            <img src="icons/icon.png" alt="Orbify" class="topbar-icon">
+            <span class="topbar-title">Orbify</span>
+        </div>
+        <div class="topbar-right">
+            <span class="version" id="versionLabel"></span>
+        </div>
+    </div>
+
+    <div class="tabs">
+        <button class="tab active" data-tab="quests">Quests</button>
+        <button class="tab" data-tab="settings">Settings</button>
+        <button class="tab" data-tab="about">About</button>
+    </div>
+
+    <div class="tab-content" id="tab-quests">
+        <div id="connectionError" class="warning hidden">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+            </svg>
+            <span id="connectionErrorText">Couldn't connect to Discord internals. Try reloading the Discord tab.</span>
+        </div>
+        <div id="questList">
+            <div class="empty">Loading quests...</div>
+        </div>
+    </div>
+
+    <div class="tab-content hidden" id="tab-settings">
+        <div class="setting-group">
+            <div class="setting-row">
+                <div class="setting-info">
+                    <span class="setting-label">Auto Spoof</span>
+                    <span class="setting-desc">Automatically start spoofing new quests</span>
+                </div>
+                <label class="toggle">
+                    <input type="checkbox" id="autoSpoofToggle">
+                    <span class="toggle-track"></span>
+                </label>
+            </div>
+            <div class="setting-row">
+                <div class="setting-info">
+                    <span class="setting-label">Auto Accept</span>
+                    <span class="setting-desc">Accept quest enrollment automatically</span>
+                </div>
+                <label class="toggle">
+                    <input type="checkbox" id="autoAcceptToggle">
+                    <span class="toggle-track"></span>
+                </label>
+            </div>
+            <div class="setting-row">
+                <div class="setting-info">
+                    <span class="setting-label">Notifications</span>
+                    <span class="setting-desc">Get notified when spoofing completes</span>
+                </div>
+                <label class="toggle">
+                    <input type="checkbox" id="notificationsToggle">
+                    <span class="toggle-track"></span>
+                </label>
+            </div>
+            <div class="setting-row">
+                <div class="setting-info">
+                    <span class="setting-label">Hide Completed</span>
+                    <span class="setting-desc">Hide quests that are already done</span>
+                </div>
+                <label class="toggle">
+                    <input type="checkbox" id="hideCompletedToggle">
+                    <span class="toggle-track"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="setting-section-title">Spoofing Speed</div>
+        <div class="setting-group">
+            <div class="setting-row speed-row">
+                <div class="setting-info">
+                    <span class="setting-desc">Controls spoofing speed for video and activity quests</span>
+                </div>
+                <div class="speed-selector">
+                    <button class="speed-btn" data-speed="safe">Safe</button>
+                    <button class="speed-btn active" data-speed="normal">Normal</button>
+                    <button class="speed-btn" data-speed="fast">Fast</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content hidden" id="tab-about">
+        <div class="about-section">
+            <div class="about-header">
+                <img src="icons/icon.png" alt="Orbify" class="about-icon">
+                <div>
+                    <div class="about-name">Orbify</div>
+                    <div class="about-tagline">Discord Quest Spoofer</div>
+                </div>
+            </div>
+
+            <div class="about-links">
+                <a href="#" id="link-repo" class="about-link">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+                    </svg>
+                    <span>GitHub Repository</span>
+                </a>
+            </div>
+
+            <div class="about-stats">
+                <div class="stats-title">Lifetime Stats</div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-value" id="statQuestsSpoofed">0</span>
+                        <span class="stat-label">Quests Spoofed</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="statTimeSaved">0m</span>
+                        <span class="stat-label">Time Saved</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-license">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+                    <path
+                        d="M8.75.75V2h.985c.304 0 .603.08.867.231l1.29.736c.038.022.08.033.124.033h2.234a.75.75 0 0 1 0 1.5h-.427l2.111 4.692a.75.75 0 0 1-.154.838l-.53-.53.529.531-.001.002-.002.002-.007.006-.014.013a1 1 0 0 1-.071.058 3 3 0 0 1-.2.13 3.4 3.4 0 0 1-.695.318c-.58.2-1.44.372-2.572.372s-1.992-.172-2.572-.372a3.4 3.4 0 0 1-.695-.318 3 3 0 0 1-.2-.13l-.014-.012-.007-.006-.002-.003h-.002l.529-.531-.53.53a.75.75 0 0 1-.154-.838L9.2 4.5H8.75v.001L7.5 8.991A.75.75 0 0 1 7.346 9.83l-.53-.53.529.531-.001.002-.002.002-.007.006-.014.013a3 3 0 0 1-.271.188 3.4 3.4 0 0 1-.695.318c-.58.2-1.44.372-2.572.372s-1.992-.172-2.572-.372a3.4 3.4 0 0 1-.695-.318 3 3 0 0 1-.2-.13l-.014-.013-.007-.006-.002-.002L.5 9.83l.529.531a.75.75 0 0 1-.154-.838L2.943 4.5H2.75a.75.75 0 0 1 0-1.5h2.234a.25.25 0 0 0 .124-.033l1.29-.736A1.75 1.75 0 0 1 7.265 2H8.25V.75a.75.75 0 0 1 .5 0zM3.78 8.75a7 7 0 0 0 1.003.063c.342 0 .677-.02 1.003-.063L4.782 6.3 3.78 8.75zm6.938 0a7 7 0 0 0 1.003.063c.342 0 .677-.02 1.003-.063L11.72 6.3l-1.003 2.45z" />
+                </svg>
+                <span>Licensed under GPL-3.0</span>
+            </div>
+
+            <div class="about-disclaimers">
+                <div class="disclaimer-title">Disclaimer</div>
+                <ul class="disclaimer-list">
+                    <li><strong>Use at your own risk.</strong> This extension spoofs your client identity to Discord's
+                        servers. This may violate Discord's Terms of Service.</li>
+                    <li><strong>Account suspension.</strong> Using this extension could result in your Discord account
+                        being flagged, restricted, or permanently banned.</li>
+                    <li><strong>No warranty.</strong> This software is provided as-is with no guarantees. The developer
+                        is not responsible for any consequences of using it.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>

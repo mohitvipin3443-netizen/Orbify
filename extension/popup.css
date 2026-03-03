@@ -1,0 +1,508 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #18191c;
+    color: #dcddde;
+    font-family: 'Inter', -apple-system, system-ui, sans-serif;
+    font-size: 13px;
+    width: 340px;
+}
+
+/* ── Top bar ── */
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background: #111214;
+    border-bottom: 1px solid #2a2c30;
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.topbar-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.topbar-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.version {
+    font-size: 11px;
+    color: #5c5e66;
+    font-weight: 500;
+}
+
+/* ── Tab bar ── */
+.tabs {
+    display: flex;
+    background: #111214;
+    border-bottom: 1px solid #2a2c30;
+    padding: 0 14px;
+    gap: 2px;
+}
+
+.tab {
+    background: none;
+    border: none;
+    color: #72767d;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+    width: auto;
+}
+
+.tab:hover {
+    color: #b9bbbe;
+}
+
+.tab.active {
+    color: #E76F25;
+    border-bottom-color: #E76F25;
+}
+
+/* ── Tab content ── */
+.tab-content {
+    padding: 12px 14px 14px;
+}
+
+.tab-content.hidden {
+    display: none;
+}
+
+/* ── Quest cards ── */
+.quest-card {
+    background: #1e1f23;
+    border: 1px solid #2a2c30;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 8px;
+}
+
+.quest-name {
+    font-weight: 600;
+    font-size: 13px;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.quest-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #72767d;
+    margin-bottom: 10px;
+}
+
+.quest-stats span:last-child {
+    color: #E76F25;
+    font-weight: 600;
+}
+
+.progress-info {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.eta-text {
+    color: #72767d !important;
+    font-weight: 500 !important;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.progress-container {
+    background: #111214;
+    border-radius: 3px;
+    height: 4px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-bar {
+    background: #E76F25;
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 3px;
+}
+
+/* ── Buttons ── */
+button.quest-btn,
+.quest-card button {
+    background: #E76F25;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 7px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    width: 100%;
+    transition: opacity 0.15s;
+}
+
+.quest-card button:hover:not(:disabled) {
+    opacity: 0.85;
+}
+
+.quest-card button:active:not(:disabled) {
+    opacity: 0.7;
+}
+
+.quest-card button:disabled {
+    background: #2a2c30;
+    color: #5c5e66;
+    cursor: not-allowed;
+}
+
+
+
+.quest-card button.cancel-btn {
+    background: #ed4245;
+}
+
+.quest-card button.cancel-btn:hover:not(:disabled) {
+    opacity: 0.85;
+}
+
+/* ── Settings ── */
+.setting-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.setting-section-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: #72767d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 14px;
+    margin-bottom: 6px;
+}
+
+.setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #222327;
+}
+
+.setting-row:last-child {
+    border-bottom: none;
+}
+
+.setting-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.setting-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #dcddde;
+}
+
+.setting-desc {
+    font-size: 11px;
+    color: #5c5e66;
+}
+
+/* ── Toggle switch ── */
+.toggle {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 20px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-track {
+    position: absolute;
+    inset: 0;
+    background: #3a3c42;
+    border-radius: 10px;
+    transition: background 0.2s;
+}
+
+.toggle-track::before {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    left: 3px;
+    top: 3px;
+    background: #72767d;
+    border-radius: 50%;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.toggle input:checked+.toggle-track {
+    background: #E76F25;
+}
+
+.toggle input:checked+.toggle-track::before {
+    transform: translateX(16px);
+    background: #fff;
+}
+
+/* ── Speed selector ── */
+.speed-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.speed-selector {
+    display: flex;
+    width: 100%;
+    background: #111214;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #2a2c30;
+}
+
+.speed-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    color: #72767d;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 7px 0;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.speed-btn:not(:last-child) {
+    border-right: 1px solid #2a2c30;
+}
+
+.speed-btn:hover {
+    color: #b9bbbe;
+    background: rgba(231, 111, 37, 0.05);
+}
+
+.speed-btn.active {
+    background: #E76F25;
+    color: #fff;
+}
+
+/* ── Empty state ── */
+.empty {
+    font-size: 12px;
+    color: #5c5e66;
+    text-align: center;
+    padding: 28px 0;
+}
+
+/* ── Warning ── */
+.warning {
+    font-size: 12px;
+    color: #ed4245;
+    padding: 10px;
+    background: rgba(237, 66, 69, 0.08);
+    border: 1px solid rgba(237, 66, 69, 0.15);
+    border-radius: 4px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.warning.hidden {
+    display: none;
+}
+
+/* ── About tab ── */
+.about-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.about-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #222327;
+}
+
+.about-icon {
+    width: 32px;
+    height: 32px;
+}
+
+.about-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.about-tagline {
+    font-size: 11px;
+    color: #5c5e66;
+    margin-top: 1px;
+}
+
+.about-links {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.about-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 6px;
+    border-radius: 4px;
+    color: #b9bbbe;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: background 0.15s, color 0.15s;
+    cursor: pointer;
+}
+
+.about-link:hover {
+    background: #222327;
+    color: #fff;
+}
+
+.about-link svg {
+    flex-shrink: 0;
+    opacity: 0.7;
+}
+
+.about-link:hover svg {
+    opacity: 1;
+}
+
+/* ── Stats ── */
+.about-stats {
+    padding-top: 12px;
+    border-top: 1px solid #222327;
+}
+
+.stats-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: #72767d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.stat-item {
+    background: #111214;
+    border: 1px solid #2a2c30;
+    border-radius: 6px;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.stat-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #E76F25;
+}
+
+.stat-label {
+    font-size: 10px;
+    color: #5c5e66;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+/* ── License ── */
+.about-license {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: #5c5e66;
+    padding-top: 12px;
+    border-top: 1px solid #222327;
+}
+
+.about-license svg {
+    flex-shrink: 0;
+    opacity: 0.5;
+}
+
+/* ── Disclaimers ── */
+.about-disclaimers {
+    padding-top: 12px;
+    border-top: 1px solid #222327;
+}
+
+.disclaimer-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: #d4940a;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.disclaimer-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.disclaimer-list li {
+    font-size: 11px;
+    color: #8a8d93;
+    line-height: 1.45;
+}
+
+.disclaimer-list li strong {
+    color: #b9bbbe;
+}
